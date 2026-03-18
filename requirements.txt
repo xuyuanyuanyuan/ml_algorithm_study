@@ -1,0 +1,24 @@
+# Python 3.10+ 建议依赖清单
+
+# 核心科学计算与可视化
+numpy>=1.23
+pandas>=1.5
+matplotlib>=3.6
+
+# 传统机器学习
+scikit-learn>=1.2
+
+# 提升树与工业常用库
+xgboost>=1.7
+lightgbm>=4.0
+catboost>=1.2
+
+# 关联规则
+mlxtend>=0.23
+
+# 深度学习
+torch>=2.0
+
+# 强化学习
+gymnasium>=0.29
+stable-baselines3>=2.0
