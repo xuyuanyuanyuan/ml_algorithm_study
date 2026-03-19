@@ -26,6 +26,7 @@ def find_algorithm_dirs():
     for base in [
         PROJECT_ROOT / "supervised_learning",
         PROJECT_ROOT / "unsupervised_learning",
+        PROJECT_ROOT / "ensemble_learning",
         PROJECT_ROOT / "reinforcement_learning",
         PROJECT_ROOT / "deep_learning",
     ]:
@@ -52,8 +53,9 @@ def print_project_intro():
     print("建议学习顺序：")
     print("  1) supervised_learning")
     print("  2) unsupervised_learning")
-    print("  3) deep_learning")
-    print("  4) reinforcement_learning")
+    print("  3) ensemble_learning")
+    print("  4) deep_learning")
+    print("  5) reinforcement_learning")
 
 
 def print_categories():

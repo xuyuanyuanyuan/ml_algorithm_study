@@ -12,6 +12,7 @@
 本项目按学习范式与任务类型组织，覆盖：
 - 监督学习（回归/分类）
 - 无监督学习（聚类/降维/关联规则）
+- 集成学习（Bagging/Boosting/Stacking）
 - 强化学习
 - 深度学习
 
@@ -60,12 +61,23 @@ ml_algorithm_study
 ├── deep_learning
 │   ├── mlp
 │   ├── cnn
+│   ├── lenet
+│   ├── alexnet
+│   ├── vgg
+│   ├── resnet
 │   ├── rnn
+│   ├── bidirectional_rnn
 │   ├── lstm
 │   ├── gru
 │   ├── transformer
 │   ├── gan
 │   └── unet
+├── ensemble_learning
+│   ├── random_forest
+│   ├── adaboost
+│   ├── gbdt
+│   ├── xgboost
+│   └── stacking
 ├── utils
 ├── data
 ├── tests
@@ -76,10 +88,11 @@ ml_algorithm_study
 
 ---
 
-## 3. 四大分类说明
+## 3. 五大分类说明
 
 - 监督学习：有标签数据，目标是预测数值或类别。
 - 无监督学习：无标签数据，目标是发现结构（簇、低维表示、规则）。
+- 集成学习：组合多个弱学习器，提升泛化与鲁棒性。
 - 强化学习：智能体在环境中试错学习策略。
 - 深度学习：以神经网络为核心，处理高维复杂模式。
 
@@ -105,8 +118,11 @@ ml_algorithm_study
 4. `supervised_learning/classification/decision_tree` -> `random_forest`
 5. `unsupervised_learning/clustering/kmeans` -> `dbscan` -> `gmm`
 6. `unsupervised_learning/dimensionality_reduction/pca` -> `tsne`
-7. `deep_learning/mlp` -> `cnn` -> `rnn/lstm/gru`
-8. `reinforcement_learning/q_learning` -> `sarsa` -> `dqn/ppo/a3c`
+7. `deep_learning/mlp` -> `cnn`
+8. `deep_learning/lenet` -> `deep_learning/vgg` -> `deep_learning/resnet`
+9. `deep_learning/bidirectional_rnn`（可在学完 `rnn/lstm/gru` 后衔接）
+10. `ensemble_learning/random_forest` -> `adaboost` -> `gbdt` -> `xgboost` -> `stacking`
+11. `reinforcement_learning/q_learning` -> `sarsa` -> `dqn/ppo/a3c`
 
 ---
 
@@ -184,3 +200,40 @@ python tests/run_smoke_tests.py
 - 关联规则：`mlxtend`
 
 如果你只学习传统机器学习，可先安装核心依赖；深度学习与强化学习部分可后续按需安装。
+
+---
+
+## 10. deep_learning 各算法作用
+
+- `mlp`：最基础的全连接神经网络，适合入门前向传播与反向传播。
+- `cnn`：卷积网络基础，用于图像局部特征提取。
+- `lenet`：经典早期 CNN 结构，适合理解卷积网络基本组件。
+- `alexnet`：更深的 CNN 结构，展示深层卷积与分类头设计。
+- `vgg`：通过重复堆叠小卷积核构建深网络，结构规整、便于教学。
+- `resnet`：通过残差连接缓解深层网络训练困难。
+- `rnn`：处理序列数据的基础循环网络。
+- `bidirectional_rnn`：双向读取序列上下文，适合前后文都重要的任务。
+- `lstm`：通过门控机制缓解长期依赖问题。
+- `gru`：参数更简洁的门控循环网络。
+- `transformer`：基于注意力机制建模长距离依赖。
+- `gan`：生成对抗网络，用于生成式建模。
+- `unet`：编码器-解码器结构，常用于语义分割。
+
+---
+
+## 11. ensemble_learning 算法归类
+
+- Bagging：`random_forest`
+- Boosting：`adaboost`、`gbdt`、`xgboost`
+- Stacking：`stacking`
+
+---
+
+## 12. 新增目录实现说明（库版 vs 教学版）
+
+- `deep_learning` 新增算法：`lenet`、`alexnet`、`vgg`、`resnet`、`bidirectional_rnn`
+- `ensemble_learning` 新增算法：`random_forest`、`adaboost`、`gbdt`、`xgboost`、`stacking`
+- 上述新增算法中，`sklearn_demo.py` 均为调用库实现：
+  - 深度学习使用 `PyTorch` 最小可运行示例
+  - 集成学习使用 `scikit-learn`（`xgboost` 目录使用 `xgboost` 库）
+- 上述新增算法中，`scratch.py` 均为教学型简化实现（用于理解核心结构/流程，不是工业级复现）
