@@ -13,6 +13,7 @@
 - 监督学习（回归/分类）
 - 无监督学习（聚类/降维/关联规则）
 - 集成学习（Bagging/Boosting/Stacking）
+- 超参数优化（网格搜索 / 随机搜索 / 贝叶斯优化 / 多预算搜索）
 - 强化学习
 - 深度学习
 
@@ -78,6 +79,14 @@ ml_algorithm_study
 │   ├── gbdt
 │   ├── xgboost
 │   └── stacking
+├── hyperparameter_optimization
+│   ├── grid_search
+│   ├── random_search
+│   ├── gp_bayesian_optimization
+│   ├── tpe
+│   ├── smac
+│   ├── hyperband
+│   └── bohb
 ├── utils
 ├── data
 ├── tests
@@ -88,11 +97,12 @@ ml_algorithm_study
 
 ---
 
-## 3. 五大分类说明
+## 3. 六大分类说明
 
 - 监督学习：有标签数据，目标是预测数值或类别。
 - 无监督学习：无标签数据，目标是发现结构（簇、低维表示、规则）。
 - 集成学习：组合多个弱学习器，提升泛化与鲁棒性。
+- 超参数优化：系统搜索模型超参数，帮助模型找到更合适的训练配置。
 - 强化学习：智能体在环境中试错学习策略。
 - 深度学习：以神经网络为核心，处理高维复杂模式。
 
@@ -122,7 +132,8 @@ ml_algorithm_study
 8. `deep_learning/lenet` -> `deep_learning/vgg` -> `deep_learning/resnet`
 9. `deep_learning/bidirectional_rnn`（可在学完 `rnn/lstm/gru` 后衔接）
 10. `ensemble_learning/random_forest` -> `adaboost` -> `gbdt` -> `xgboost` -> `stacking`
-11. `reinforcement_learning/q_learning` -> `sarsa` -> `dqn/ppo/a3c`
+11. `hyperparameter_optimization/grid_search` -> `random_search` -> `hyperband` -> `gp_bayesian_optimization` -> `tpe`
+12. `reinforcement_learning/q_learning` -> `sarsa` -> `dqn/ppo/a3c`
 
 ---
 
@@ -195,6 +206,7 @@ python tests/run_smoke_tests.py
 
 - 核心依赖：`numpy`、`pandas`、`matplotlib`、`scikit-learn`
 - 提升树扩展：`xgboost`、`lightgbm`、`catboost`
+- 超参数优化扩展：`scikit-optimize`、`optuna`、`smac`、`hpbandster`、`ConfigSpace`
 - 深度学习：`torch`
 - 强化学习：`gymnasium`、`stable-baselines3`
 - 关联规则：`mlxtend`
@@ -237,3 +249,20 @@ python tests/run_smoke_tests.py
   - 深度学习使用 `PyTorch` 最小可运行示例
   - 集成学习使用 `scikit-learn`（`xgboost` 目录使用 `xgboost` 库）
 - 上述新增算法中，`scratch.py` 均为教学型简化实现（用于理解核心结构/流程，不是工业级复现）
+
+---
+
+## 13. hyperparameter_optimization 目录说明
+
+- `grid_search`：最基础的穷举搜索，适合理解“参数网格 + 验证集比较”。
+- `random_search`：不再试完所有组合，而是随机采样若干组参数。
+- `gp_bayesian_optimization`：展示 surrogate model 与 acquisition function 的思路。
+- `tpe`：展示“好样本 / 坏样本分布”如何帮助决定下一次采样。
+- `smac`：展示 sequential model-based optimization 的基本流程。
+- `hyperband`：展示先少量资源筛选，再把更多资源给优胜者。
+- `bohb`：展示贝叶斯优化与 Hyperband 结合的核心思想。
+
+说明：
+- `grid_search`、`random_search`、`hyperband` 的 `scratch.py` 为完整可运行教学版。
+- `gp_bayesian_optimization`、`tpe`、`smac`、`bohb` 的 `scratch.py` 为教学型简化实现。
+- `smac/sklearn_demo.py` 与 `bohb/sklearn_demo.py` 因第三方库版本差异较大，保留为依赖说明模板版。

@@ -43,6 +43,7 @@ class LSTMScratchRegressor:
         self.hidden_size = hidden_size
         self.learning_rate = learning_rate
         self.epochs = epochs
+        
 
         rng = np.random.default_rng(seed)
         concat_size = input_size + hidden_size

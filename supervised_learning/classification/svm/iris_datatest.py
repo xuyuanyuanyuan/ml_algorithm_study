@@ -47,7 +47,7 @@ class LinearSVMScratch:
         return np.where(y <= 0, -1.0, 1.0)
 
     def _hinge_loss(self, x_data, y_binary):
-        """计算当前参数下的平均 hinge loss。"""
+        """计算当前参数下的平均 hinge loss（合页损失) 正则化损失。"""
         import numpy as np
 
         scores = x_data @ self.weights + self.bias
@@ -274,7 +274,7 @@ def main():
     # 4. 评估结果
     train_acc = model.score(x_train, y_train)
     test_acc = model.score(x_test, y_test)
-    print("=== SVM（手写教学简化版，使用本地 Iris 数据）===")
+    print("=== SVM（使用本地 Iris 数据）===")
     print(f"训练集准确率：{train_acc:.4f}")
     print(f"测试集准确率：{test_acc:.4f}")
     print(f"学习到的权重：{model.weights}")
